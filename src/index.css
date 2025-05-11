@@ -1,76 +1,6 @@
 body {
   font-family: 'Mali', cursive;
-  background-color: #f5fbff; 
-  margin: 0;
-  padding: 0;
-}
-
-.contenedor {
-  max-width: 800px;
-  margin: 30px auto;
-  padding: 20px;
-  background-color: #ffffff;
-  border: 3px solid #a2d5f2;
-  border-radius: 20px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-h1 {
-  text-align: center;
-  color: #4a90e2;
-  font-size: 2.5rem;
-  margin-bottom: 20px;
-}
-
-h2 {
-  font-size: 1.8rem;
-  color: #2d70b7;
-  margin-top: 30px;
-  border-bottom: 2px solid #a2d5f2;
-  padding-bottom: 5px;
-}
-
-ul {
-  list-style: none;
-  padding: 0;
-}
-
-li {
-  background-color: #eaf7ff;
-  border: 1px solid #a2d5f2;
-  border-radius: 10px;
-  padding: 10px 15px;
-  margin: 10px 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-button {
-  background-color: #4abff2;
-  border: none;
-  border-radius: 20%;
-  color: white;
-  padding: 10px 15px;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: background-color 0.3s;
-}
-
-button:hover {
-  background-color: #3aa6d0;
-}
-
-input[type="text"] {
-  width: 97%;
-  padding: 10px;
-  margin-bottom: 15px;
-  border: 2px solid #a2d5f2;
-  border-radius: 8px;
-}
-body {
-  font-family: 'Mali', cursive;
-  background-color: #f0faff; 
+  background-color: #f0faff;
   color: #333;
   margin: 0;
   padding: 20px;
@@ -90,6 +20,13 @@ h1, h2 {
   text-align: center;
   color: #00bfff;
   margin-bottom: 20px;
+}
+
+.titulo {
+  font-size: 9rem;
+  font-weight: bold;
+  text-align: center;
+  color: #333;
 }
 
 ul {
@@ -113,4 +50,299 @@ li span {
   font-weight: bold;
 }
 
+.contenedor-principal {
+  padding: 30px;
+  max-width: 1200px;
+  margin: auto;
+}
 
+.top-section {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 30px; /* Mayor espacio para separar más del título */
+}
+
+.titulo {
+  font-size: 3rem; /* Título más grande */
+  color: #00bfff;
+  margin: 0;
+  padding-top: 10px; /* Para empujarlo un poco más arriba */
+}
+
+.form-section {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 40px; /* Más espacio entre los inputs y el botón */
+  margin-top: 20px; /* Separación entre el título y los inputs */
+  position: relative;
+}
+
+.form-section input {
+  width: 200px;
+  padding: 12px;
+  font-size: 1rem;
+  border: 2px solid #4abff2;
+  border-radius: 10px;
+  margin-left: 15px;
+}
+
+.form-section button {
+  padding: 12px 20px;
+  font-size: 1.1rem;
+  background-color: #00bfff;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.form-section button:hover {
+  background-color: #007ac1;
+}
+
+/* Esto es clave para agregar espacio entre los inputs */
+.form-section input:not(:last-child) {
+  margin-right: 20px; /* Agregar espacio entre los inputs */
+}
+
+.main-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.reproductor-container,
+.playlist-section {
+  flex: 1 1 45%;
+  background: white;
+  padding: 20px;
+  border: 2px solid #00bfff;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 191, 255, 0.1);
+  min-width: 300px;
+  position: relative;
+}
+
+.vinilo-img {
+  width: 150px;
+  height: 150px;
+  margin: 0 auto 20px;
+  display: block;
+  animation: girar 4s linear infinite;
+}
+
+@keyframes girar {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.acciones {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.icon-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.icon-button img {
+  width: 32px;
+  height: 32px;
+}
+
+.input-busqueda-inline {
+  width: 150px;
+  padding: 8px;
+  border-radius: 8px;
+  border: 2px solid #a2d5f2;
+}
+
+.busqueda-desplegable {
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  opacity: 0;
+  transform: translateX(-20px);
+}
+
+.busqueda-desplegable.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.play-icon {
+  width: 28px;
+  height: 28px;
+}
+
+.boton-play {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.cancion-item {
+  margin-bottom: 10px;
+}
+
+.video-contenedor {
+  animation: fadein 0.5s ease-in;
+}
+
+@keyframes fadein {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Contenedor del vinilo */
+.vinilo-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.vinilo-img {
+  width: 300px; /* Tamaño mayor para el vinilo */
+  height: 300px;
+  margin: 0 auto;
+  animation: girar 4s linear infinite;
+}
+
+/* Botones de control del reproductor */
+.botones-reproductor {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 30px;
+}
+
+/* Estilo de los botones */
+.icon-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.icon-btn img {
+  width: 50px;
+  height: 50px;
+  transition: transform 0.2s;
+}
+
+/* Asegúrate de que el contenedor del video ocupe el 100% del ancho disponible */
+.video-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  padding-bottom: 56.25%; /* Esto mantiene la proporción 16:9 */
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+@keyframes video-aparece {
+  from {
+    opacity: 0;
+    transform: scale(0.5); /* Comienza más pequeño */
+  }
+  to {
+    opacity: 1;
+    transform: scale(1); /* Escala hasta su tamaño original */
+  }
+}
+
+/* Aplica la animación al contenedor del video */
+.video-container {
+  animation: video-aparece 0.6s ease-out; /* Duración y tipo de animación */
+  animation-fill-mode: forwards; /* Mantener la animación final una vez completada */
+}
+
+/* Ajusta el contenedor para asegurar que se vea correctamente */
+.video-container iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+img[src$=".svg"] {
+  filter: invert(32%) sepia(98%) saturate(748%) hue-rotate(176deg) brightness(97%) contrast(97%);
+}
+
+/* Responsividad con Media Queries */
+@media (max-width: 768px) {
+  /* Ajustes para pantallas más pequeñas */
+  .top-section {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .form-section {
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+  }
+
+  .form-section input,
+  .form-section button {
+    width: 100%;
+    margin-right: 0;
+  }
+
+  .main-section {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .reproductor-container,
+  .playlist-section {
+    width: 100%;
+    min-width: 100%;
+  }
+
+  .vinilo-img {
+    width: 250px; /* Tamaño más pequeño para dispositivos móviles */
+    height: 250px;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Ajustes para dispositivos muy pequeños */
+  .titulo {
+    font-size: 2.5rem; /* Reducir tamaño del título */
+  }
+
+  .form-section {
+    gap: 10px;
+  }
+
+  .form-section input,
+  .form-section button {
+    width: 100%;
+  }
+
+  .botones-reproductor {
+    gap: 20px;
+  }
+
+  .vinilo-img {
+    width: 200px; /* Ajuste para pantallas pequeñas */
+    height: 200px;
+  }
+}

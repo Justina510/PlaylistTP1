@@ -1,3 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filter-circle-fill" viewBox="0 0 16 16">
-  <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16M3.5 5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1 0-1M5 8.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m2 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5"/>
-</svg>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Uploaded to: SVG Repo, www.svgrepo.com, Transformed by: SVG Repo Mixer Tools -->
+<svg width="800px" height="800px" viewBox="0 0 24 24" id="magicoon-Filled" xmlns="http://www.w3.org/2000/svg" fill="#000000">
+<g id="SVGRepo_bgCarrier" stroke-width="0"/>
+<g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
+<g id="SVGRepo_iconCarrier"> <defs> <style>.cls-1{fill:#00bfff;}</style> </defs> <title>sort-descending</title> <g id="sort-descending-Filled"> <path id="sort-descending-Filled-2" data-name="sort-descending-Filled" class="cls-1" d="M12,2.5A9.5,9.5,0,1,0,21.5,12,9.509,9.509,0,0,0,12,2.5ZM13,17H11a1,1,0,0,1,0-2h2a1,1,0,0,1,0,2Zm1.5-4h-5a1,1,0,0,1,0-2h5a1,1,0,0,1,0,2ZM16,9H8A1,1,0,0,1,8,7h8a1,1,0,0,1,0,2Z"/> </g> </g>
+</svg>

@@ -1,13 +1,18 @@
 import { useState, useEffect } from "react";
 import PonerCancion from "./Canciones";
 import "./index.css";
-import ModalVideo from "./ModalVideo";
+import Reproductor from "./reproductor";
+import ordenadoIcon from "./assets/icons/desordenado.svg";
+import desordenadoIcon from "./assets/icons/ordenado.svg";
+import lupaIcon from "./assets/icons/lupa.svg";
+import playIcon from "./assets/icons/play.svg";
 
 function App() {
   const [canciones, setCanciones] = useState([]);
   const [videoActivo, setVideoActivo] = useState(null);
   const [busqueda, setBusqueda] = useState("");
   const [ordenado, setOrdenado] = useState(false);
+  const [mostrarBusqueda, setMostrarBusqueda] = useState(false);
 
   useEffect(() => {
     const guardadas = localStorage.getItem("canciones");
@@ -24,54 +29,95 @@ function App() {
     setCanciones((prevCanciones) => [...prevCanciones, nuevaCancion]);
   };
 
+  const incrementarReproduccion = (url) => {
+    const nuevasCanciones = canciones.map((c) => {
+      if (c.url === url) {
+        return {
+          ...c,
+          reproducciones: (c.reproducciones || 0) + 1,
+        };
+      }
+      return c;
+    });
+    setCanciones(nuevasCanciones);
+    localStorage.setItem("canciones", JSON.stringify(nuevasCanciones));
+  };
+
   const cancionesFiltradas = canciones
     .filter((cancion) =>
       cancion.nombre.toLowerCase().includes(busqueda.toLowerCase())
     )
     .sort((a, b) => (ordenado ? b.reproducciones - a.reproducciones : 0));
 
+  const manejarClickEnCancion = (url) => {
+    incrementarReproduccion(url);
+    setVideoActivo(url);
+  };
+
   return (
-    <div className="contenedor">
-      <h1>Playlist ★!</h1>
+    <div className="contenedor-principal">
+      <div className="top-section">
+        <h1 className="titulo">Playlist ★!</h1>
+        <div className="form-section">
+          <PonerCancion AñadirCancion={AñadirCancion} canciones={canciones} />
+        </div>
+      </div>
 
-      <PonerCancion AñadirCancion={AñadirCancion} canciones={canciones} />
+      <div className="main-section">
+        <Reproductor
+          canciones={canciones}
+          setCanciones={setCanciones}
+          videoActivo={videoActivo}
+          setVideoActivo={setVideoActivo}
+          incrementarReproduccion={incrementarReproduccion}
+        />
 
-      <input
-        type="text"
-        placeholder="Buscar canción"
-        value={busqueda}
-        onChange={(e) => setBusqueda(e.target.value)}
-        style={{ marginBottom: "10px", padding: "5px", width: "98%" }}
-      />
-
-      <button onClick={() => setOrdenado(!ordenado)} style={{ marginBottom: "20px" }}>
-        {ordenado ? "Desordenar" : "Ordenar por reproducciones"}
-      </button>
-
-      <h2>Playlist</h2>
-      <ul>
-        {cancionesFiltradas.map((cancion) => (
-          <li key={cancion.url}>
-            {cancion.nombre} - Reproducciones: {cancion.reproducciones}
+        <div className="playlist-section">
+          <div className="acciones">
             <button
-              onClick={() => {
-                const indexReal = canciones.findIndex((c) => c.url === cancion.url);
-                const nuevas = [...canciones];
-                nuevas[indexReal].reproducciones += 1;
-                setCanciones(nuevas);
-
-                const url = new URL(cancion.url);
-                const id = url.searchParams.get("v") || url.pathname.slice(1);
-                setVideoActivo(id);
-              }}
+              onClick={() => setOrdenado(!ordenado)}
+              className="icon-button"
             >
-              ▶️ Play
+              <img
+                src={ordenado ? desordenadoIcon : ordenadoIcon}
+                alt="Ordenar"
+              />
             </button>
-          </li>
-        ))}
-      </ul>
+            <button
+              onClick={() => setMostrarBusqueda(!mostrarBusqueda)}
+              className="icon-button"
+            >
+              <img src={lupaIcon} alt="Buscar" />
+            </button>
+            <div
+              className={`busqueda-desplegable ${mostrarBusqueda ? "visible slide-in" : "oculto"}`}
+            >
+              <input
+                type="text"
+                placeholder="Buscar"
+                value={busqueda}
+                onChange={(e) => setBusqueda(e.target.value)}
+                className="input-busqueda-inline"
+              />
+            </div>
+          </div>
 
-      <ModalVideo videoId={videoActivo} cerrar={() => setVideoActivo(null)} />
+          <h2>Playlist</h2>
+          <ul>
+            {cancionesFiltradas.map((cancion) => (
+              <li key={cancion.url} className="cancion-item">
+                {cancion.nombre} - Reproducciones: {cancion.reproducciones}
+                <button
+                  className="boton-play"
+                  onClick={() => manejarClickEnCancion(cancion.url)}
+                >
+                  <img src={playIcon} alt="Play" className="play-icon" />
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
     </div>
   );
 }
