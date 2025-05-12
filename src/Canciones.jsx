@@ -1,6 +1,23 @@
 import { useState } from "react";
 
-const REGEX_YOUTUBE = /^(https:\/\/)?(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/)[\w\-]{11}$/;
+function extraerIdDeYouTube(url) {
+  try {
+    const parsedUrl = new URL(url);
+    const hostname = parsedUrl.hostname;
+
+    if (hostname.includes("youtube.com")) {
+      return parsedUrl.searchParams.get("v");
+    }
+
+    if (hostname.includes("youtu.be")) {
+      return parsedUrl.pathname.split("/")[1]; 
+    }
+
+    return null;
+  } catch {
+    return null;
+  }
+}
 
 function PonerCancion({ AñadirCancion, canciones }) {
   const [nombre, setNombre] = useState("");
@@ -15,17 +32,19 @@ function PonerCancion({ AñadirCancion, canciones }) {
       return;
     }
 
-    if (!REGEX_YOUTUBE.test(url)) {
-      setError("La URL debe ser valida de youtube");
+    const videoId = extraerIdDeYouTube(url);
+
+    if (!videoId || videoId.length !== 11) {
+      setError("La URL debe ser válida y pertenecer a YouTube (youtube.com o youtu.be)");
       return;
     }
 
-    if (canciones.some((cancion) => cancion.url === url)) {
-      setError("Esta cancion ya se encuentra en la playlist");
+    if (canciones.some((cancion) => cancion.videoId === videoId)) {
+      setError("Esta canción ya se encuentra en la playlist");
       return;
     }
 
-    AñadirCancion({ nombre, url, reproducciones: 0 });
+    AñadirCancion({ nombre, url, videoId, reproducciones: 0 });
     setNombre("");
     setUrl("");
     setError("");
@@ -35,13 +54,13 @@ function PonerCancion({ AñadirCancion, canciones }) {
     <form onSubmit={manejarEnvio} className="formulario">
       <input
         type="text"
-        placeholder="Nombre de la cancion"
+        placeholder="Nombre de la canción"
         value={nombre}
         onChange={(e) => setNombre(e.target.value)}
       />
       <input
         type="text"
-        placeholder="URL de youtube"
+        placeholder="URL de YouTube"
         value={url}
         onChange={(e) => setUrl(e.target.value)}
       />
