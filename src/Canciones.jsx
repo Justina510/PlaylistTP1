@@ -64,8 +64,10 @@ function PonerCancion({ AñadirCancion, canciones }) {
         value={url}
         onChange={(e) => setUrl(e.target.value)}
       />
-      {error && <p style={{ color: "red" }}>{error}</p>}
-      <button type="submit">Añadir!</button>
+      <div className="contenedor-boton-error">
+    <button type="submit">Añadir!</button>
+    {error && <p className="mensaje-error">{error}</p>}
+    </div>
     </form>
   );
 }

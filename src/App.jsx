@@ -72,51 +72,56 @@ function App() {
           incrementarReproduccion={incrementarReproduccion}
         />
 
-        <div className="playlist-section">
-          <div className="acciones">
-            <button
-              onClick={() => setOrdenado(!ordenado)}
-              className="icon-button"
-            >
-              <img
-                src={ordenado ? desordenadoIcon : ordenadoIcon}
-                alt="Ordenar"
-              />
-            </button>
-            <button
-              onClick={() => setMostrarBusqueda(!mostrarBusqueda)}
-              className="icon-button"
-            >
-              <img src={lupaIcon} alt="Buscar" />
-            </button>
-            <div
-              className={`busqueda-desplegable ${mostrarBusqueda ? "visible slide-in" : "oculto"}`}
-            >
-              <input
-                type="text"
-                placeholder="Buscar"
-                value={busqueda}
-                onChange={(e) => setBusqueda(e.target.value)}
-                className="input-busqueda-inline"
-              />
-            </div>
-          </div>
+       <div className="playlist-section">
+  <div className="acciones">
+    <button
+      onClick={() => setOrdenado(!ordenado)}
+      className="icon-button"
+      title={ordenado ? "Ordenar por ingreso" : "Ordenar por vistas"}
+    >
+      <img
+        src={ordenado ? desordenadoIcon : ordenadoIcon}
+        alt="Ordenar"
+      />
+    </button>
 
-          <h2>Playlist</h2>
-          <ul>
-            {cancionesFiltradas.map((cancion) => (
-              <li key={cancion.url} className="cancion-item">
-                {cancion.nombre} - Reproducciones: {cancion.reproducciones}
-                <button
-                  className="boton-play"
-                  onClick={() => manejarClickEnCancion(cancion.url)}
-                >
-                  <img src={playIcon} alt="Play" className="play-icon" />
-                </button>
-              </li>
-            ))}
-          </ul>
-        </div>
+    <button
+      onClick={() => setMostrarBusqueda(!mostrarBusqueda)}
+      className="icon-button"
+      title="Buscar"
+    >
+      <img src={lupaIcon} alt="Buscar" />
+    </button>
+
+    <div
+      className={`busqueda-desplegable ${mostrarBusqueda ? "visible slide-in" : "oculto"}`}
+    >
+      <input
+        type="text"
+        placeholder="Buscar"
+        value={busqueda}
+        onChange={(e) => setBusqueda(e.target.value)}
+        className="input-busqueda-inline"
+      />
+    </div>
+  </div>
+
+  <h2>Playlist</h2>
+  <ul>
+    {cancionesFiltradas.map((cancion) => (
+      <li key={cancion.url} className="cancion-item">
+        {cancion.nombre} - Reproducciones: {cancion.reproducciones}
+        <button
+          className="boton-play"
+          onClick={() => manejarClickEnCancion(cancion.url)}
+        >
+          <img src={playIcon} alt="Play" className="play-icon" />
+        </button>
+      </li>
+    ))}
+  </ul>
+</div>
+
       </div>
     </div>
   );
